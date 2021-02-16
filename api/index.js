@@ -1,4 +1,5 @@
 const browserless = require('browserless')()
+const html = require('../template.html')
 
 module.exports = async (req, res) => {
     // Default settings
@@ -9,10 +10,11 @@ module.exports = async (req, res) => {
 
     // Request settings
     let settings = {
-        hide: ['#banner-carbonads'],
-        overlay: {
-            browser: 'dark',
-            background: 'linear-gradient(45deg, #38C190 0%, #19916B 100%)'
+        html: html,
+        viewport: {
+            width: 420,
+            height: 280,
+            deviceScaleFactor: 2
         }
     }
 
