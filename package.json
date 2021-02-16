@@ -18,6 +18,7 @@
   "homepage": "https://github.com/enstyled/snap#readme",
   "dependencies": {
     "browserless": "^8.7.8",
+    "prism-themes": "^1.5.0",
     "puppeteer": "^7.1.0"
   }
 }
