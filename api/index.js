@@ -9,7 +9,11 @@ module.exports = async (req, res) => {
 
     // Request settings
     let settings = {
-        device: 'iPhone 12'
+        hide: ['#banner-carbonads'],
+        overlay: {
+            browser: 'dark',
+            background: 'linear-gradient(45deg, #38C190 0%, #19916B 100%)'
+        }
     }
 
     // The requested URL
