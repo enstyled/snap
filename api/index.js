@@ -1,12 +1,9 @@
-const browserless = require('browserless')()
+const browserless = require('browserless')({
+    ignoreHTTPSErrors: true,
+    args: ['--disable-gpu', '--single-process', '--no-zygote', '--no-sandbox', '--hide-scrollbars']
+})
 
 module.exports = async (req, res) => {
-    // Default settings
-    const defaults = {
-        ignoreHTTPSErrors: true,
-        args: ['--disable-gpu', '--single-process', '--no-zygote', '--no-sandbox', '--hide-scrollbars']
-    }
-
     // Request settings
     let settings = {
         viewport: {
@@ -30,7 +27,7 @@ module.exports = async (req, res) => {
     }
 
     // Take the screenshot
-    const buffer = await browserless.screenshot(url, {...defaults, ...settings})
+    const buffer = await browserless.screenshot(url, settings)
 
     res.setHeader('content-type', 'image/png');
     res.send(buffer)
