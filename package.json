@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/enstyled/snap/issues"
   },
-  "homepage": "https://github.com/enstyled/snap#readme"
+  "homepage": "https://github.com/enstyled/snap#readme",
+  "dependencies": {
+    "browserless": "^8.7.8",
+    "puppeteer": "^7.1.0"
+  }
 }
