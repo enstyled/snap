@@ -1,9 +1,9 @@
-const browserless = require('browserless')({
-    ignoreHTTPSErrors: true,
-    args: ['--disable-gpu', '--single-process', '--no-zygote', '--no-sandbox', '--hide-scrollbars']
-})
-
 module.exports = async (req, res) => {
+    const browserless = require('browserless')({
+        ignoreHTTPSErrors: true,
+        args: ['--disable-gpu', '--single-process', '--no-zygote', '--no-sandbox', '--hide-scrollbars']
+    })
+    
     // Request settings
     let settings = {
         viewport: {
