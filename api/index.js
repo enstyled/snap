@@ -1,5 +1,4 @@
 const browserless = require('browserless')()
-const html = require('../template.html')
 
 module.exports = async (req, res) => {
     // Default settings
@@ -10,16 +9,25 @@ module.exports = async (req, res) => {
 
     // Request settings
     let settings = {
-        html: html,
         viewport: {
-            width: 420,
-            height: 280,
             deviceScaleFactor: 2
         }
     }
 
     // The requested URL
-    const { url = 'http://google.com' } = req.query
+    const { url } = req.query
+
+    if (url) {
+        settings.hide = ['#banner-carbonads']
+        settings.overlay = {
+            browser: 'dark',
+            background: 'linear-gradient(45deg, #38C190 0%, #19916B 100%)'
+        }
+    } else {
+        settings.html = require('../template.html')
+        settings.viewport.width = 420
+        settings.viewport.height = 280
+    }
 
     // Take the screenshot
     const buffer = await browserless.screenshot(url, {...defaults, ...settings})
