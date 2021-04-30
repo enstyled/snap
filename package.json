@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/enstyled/snap#readme",
   "dependencies": {
-    "browserless": "^8.7.8",
-    "puppeteer": "^7.1.0"
+    "chrome-aws-lambda": "^8.0.2",
+    "puppeteer-core": "^8.0.0"
   }
 }

@@ -1,34 +1,15 @@
+const chromium = require('chrome-aws-lambda');
+
 module.exports = async (req, res) => {
-    const browserless = require('browserless')({
-        ignoreHTTPSErrors: true,
-        args: ['--disable-gpu', '--single-process', '--no-zygote', '--no-sandbox', '--hide-scrollbars']
-    })
-    
-    // Request settings
-    let settings = {
-        viewport: {
-            deviceScaleFactor: 2
-        }
-    }
+    let browser = await chromium.puppeteer.launch();
+    let page = await browser.newPage();
 
-    // The requested URL
-    const { url } = req.query
+    await page.goto('https://www.iconfinder.com');
 
-    if (url) {
-        settings.hide = ['#banner-carbonads']
-        settings.overlay = {
-            browser: 'dark',
-            background: 'linear-gradient(45deg, #38C190 0%, #19916B 100%)'
-        }
-    } else {
-        settings.html = require('../template.html')
-        settings.viewport.width = 420
-        settings.viewport.height = 280
-    }
+    let image = await page.screenshot();
 
-    // Take the screenshot
-    const buffer = await browserless.screenshot(url, settings)
+    console.log(image);
 
     res.setHeader('content-type', 'image/png');
-    res.send(buffer)
+    res.send();
 }
